@@ -131,6 +131,25 @@ var stream = Book.synchronize({author: 'Arthur C. Clarke'})
 
 One caveat... synchronization is kinda slow for now. Use with care.
 
+### Deleting an existing index
+
+You may wish to start from a fresh empty index (prior to synchronize an exsiting an existing collection). You can use the 
+deleteIndex function for this purpose.
+
+```javascript
+var BookSchema = new Schema({…});
+BookSchema.plugin(mongoosastic);
+
+var Book = mongoose.model('Book', BookSchema)
+
+Book.deleteIndex(function(err,data){
+  if(null != err)
+    var stream = Book.synchronize();
+    …
+  });
+
+```
+
 ### Per Field Options
 Schemas can be configured to have special options per field. These match
 with the existing [field mapping configurations](http://www.elasticsearch.org/guide/reference/mapping/core-types.html) defined by elasticsearch with the only difference being they are all prefixed by "es_". 
