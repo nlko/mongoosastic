@@ -328,6 +328,24 @@ describe('indexing', function(){
         });
       });
     });
+
+    it('Deleting index', function(done){
+      var BumSchema = new Schema({
+        name: String
+      });
+      BumSchema.plugin(mongoosastic, {
+          index: 'ms_sample'
+        , type: 'bum'
+      });
+      var Bum = mongoose.model('bum2', BumSchema);
+      Bum.deleteIndex(function(err,data){
+        should.not.exists(err);
+        Bum.deleteIndex(function(err,data){
+           should.exists(err);
+          done();
+        });
+      });          
+    });    
   });
 
 });
