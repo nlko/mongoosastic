@@ -10,7 +10,8 @@
   },
   "main":"lib/mongoosastic.js",
   "dependencies": {
-    "elastical":"0.0.12"
+    "elastical":"0.0.12",
+    "async":"latest"
   },
   "peerDependencies": {
     "mongoose":"3.8.x"
